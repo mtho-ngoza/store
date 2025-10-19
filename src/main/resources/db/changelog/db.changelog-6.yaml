@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6-add-performance-indexes
+      author: developer@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/add-indexes.sql
