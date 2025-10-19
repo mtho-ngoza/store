@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5-reset-sequences-after-data-load
+      author: developer@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/reset-sequences.sql
