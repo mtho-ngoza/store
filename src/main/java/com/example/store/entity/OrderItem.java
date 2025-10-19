@@ -1,18 +1,23 @@
 package com.example.store.entity;
 
 import jakarta.persistence.*;
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * OrderItem junction entity for many-to-many relationship between Order and Product. Stores additional information like
  * quantity and price at time of order. This is an e-commerce best practice: products' prices change over time, so we
  * need to capture the price at the moment the order was placed.
+ *
+ * <p>Note: Replaced @Data with @Getter/@Setter and custom equals/hashCode/toString. See Customer entity for detailed
+ * discussion on why this is debatable.
  */
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "order_item")
 public class OrderItem {
     @Id
@@ -35,4 +40,22 @@ public class OrderItem {
      * reflect the price that was valid when the order was placed.
      */
     private BigDecimal priceAtOrderTime;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderItem)) return false;
+        OrderItem orderItem = (OrderItem) o;
+        return id != null && Objects.equals(id, orderItem.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" + "id=" + id + ", quantity=" + quantity + ", priceAtOrderTime=" + priceAtOrderTime + '}';
+    }
 }
