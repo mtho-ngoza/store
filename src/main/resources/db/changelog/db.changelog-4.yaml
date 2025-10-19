@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-add-sample-product-data-and-relationships
+      author: developer@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/add-sample-products.sql
