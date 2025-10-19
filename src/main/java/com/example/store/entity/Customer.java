@@ -40,8 +40,7 @@ public class Customer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        Customer customer = (Customer) o;
+        if (!(o instanceof Customer customer)) return false;
         return id != null && Objects.equals(id, customer.id);
     }
 

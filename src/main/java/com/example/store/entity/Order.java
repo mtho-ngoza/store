@@ -34,8 +34,7 @@ public class Order {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-        Order order = (Order) o;
+        if (!(o instanceof Order order)) return false;
         return id != null && Objects.equals(id, order.id);
     }
 
