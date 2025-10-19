@@ -6,19 +6,19 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Product entity representing items that can be ordered.
+ * Uses many-to-many relationship with Order through OrderItem junction table.
+ */
 @Entity
 @Data
-@Table(name = "\"order\"")
-public class Order {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Customer customer;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 }

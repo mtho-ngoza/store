@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-add-product-and-order-item-tables
+      author: developer@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/add-product-tables.sql
