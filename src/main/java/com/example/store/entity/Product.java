@@ -1,14 +1,15 @@
 package com.example.store.entity;
 
 import jakarta.persistence.*;
+
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Product entity representing items that can be ordered.
- * Uses many-to-many relationship with Order through OrderItem junction table.
+ * Product entity representing items that can be ordered. Uses many-to-many relationship with Order through OrderItem
+ * junction table.
  */
 @Entity
 @Data

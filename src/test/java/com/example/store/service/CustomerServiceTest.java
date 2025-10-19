@@ -2,6 +2,7 @@ package com.example.store.service;
 
 import com.example.store.entity.Customer;
 import com.example.store.repository.CustomerRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

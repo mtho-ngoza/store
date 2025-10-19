@@ -1,7 +1,9 @@
 package com.example.store.exception;
 
 import com.example.store.dto.ErrorResponse;
+
 import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,20 +15,14 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Global exception handler for consistent error responses across the API.
- */
+/** Global exception handler for consistent error responses across the API. */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * Handle ResourceNotFoundException.
-     * Returns 404 NOT FOUND with error details.
-     */
+    /** Handle ResourceNotFoundException. Returns 404 NOT FOUND with error details. */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(
-            ResourceNotFoundException ex,
-            HttpServletRequest request) {
+            ResourceNotFoundException ex, HttpServletRequest request) {
 
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setTimestamp(LocalDateTime.now());
@@ -38,14 +34,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
-    /**
-     * Handle validation errors from @Valid annotation.
-     * Returns 400 BAD REQUEST with field-level error details.
-     */
+    /** Handle validation errors from @Valid annotation. Returns 400 BAD REQUEST with field-level error details. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationErrors(
-            MethodArgumentNotValidException ex,
-            HttpServletRequest request) {
+            MethodArgumentNotValidException ex, HttpServletRequest request) {
 
         Map<String, String> fieldErrors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
@@ -65,14 +57,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
-    /**
-     * Handle all other unexpected exceptions.
-     * Returns 500 INTERNAL SERVER ERROR.
-     */
+    /** Handle all other unexpected exceptions. Returns 500 INTERNAL SERVER ERROR. */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGenericException(
-            Exception ex,
-            HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request) {
 
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setTimestamp(LocalDateTime.now());

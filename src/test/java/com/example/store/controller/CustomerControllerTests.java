@@ -4,6 +4,7 @@ import com.example.store.entity.Customer;
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.service.CustomerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +85,7 @@ class CustomerControllerTests {
         Page<Customer> customerPage = new PageImpl<>(List.of(customer), PageRequest.of(1, 10), 1);
         when(customerService.getAllCustomersPaginated(any())).thenReturn(customerPage);
 
-        mockMvc.perform(get("/customer")
-                        .param("page", "1")
-                        .param("size", "10")
-                        .param("sort", "name,asc"))
+        mockMvc.perform(get("/customer").param("page", "1").param("size", "10").param("sort", "name,asc"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].name").value("John Doe"));
     }

@@ -5,8 +5,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * DTO for OrderItem - represents a product within an order.
- * Includes product details, quantity, and price at time of order.
+ * DTO for OrderItem - represents a product within an order. Includes product details, quantity, and price at time of
+ * order.
  */
 @Data
 public class OrderItemDTO {

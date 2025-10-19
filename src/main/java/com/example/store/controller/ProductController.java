@@ -5,7 +5,9 @@ import com.example.store.dto.ProductDTO;
 import com.example.store.entity.Product;
 import com.example.store.mapper.ProductMapper;
 import com.example.store.service.ProductService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,10 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * REST controller for Product operations.
- * Provides endpoints for creating and retrieving products.
- */
+/** REST controller for Product operations. Provides endpoints for creating and retrieving products. */
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
@@ -39,9 +38,8 @@ public class ProductController {
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "id,desc") String[] sort) {
 
-        Sort.Direction direction = sort.length > 1 && sort[1].equalsIgnoreCase("asc")
-                ? Sort.Direction.ASC
-                : Sort.Direction.DESC;
+        Sort.Direction direction =
+                sort.length > 1 && sort[1].equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort[0]));
 
         Page<Product> productPage = productService.getAllProductsPaginated(pageable);
