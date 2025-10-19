@@ -1,0 +1,45 @@
+### Order API Requests
+
+### Base URL
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+###
+# Get all orders
+GET {{baseUrl}}/order
+Accept: {{contentType}}
+
+###
+# Get order by ID (existing)
+GET {{baseUrl}}/order/1
+Accept: {{contentType}}
+
+###
+# Get order by ID (non-existent - should return 404)
+GET {{baseUrl}}/order/99999
+Accept: {{contentType}}
+
+###
+# Create a new order
+POST {{baseUrl}}/order
+Content-Type: {{contentType}}
+
+{
+  "description": "New test order",
+  "customer": {
+    "id": 99
+  }
+}
+
+###
+# Create order with detailed customer info
+POST {{baseUrl}}/order
+Content-Type: {{contentType}}
+
+{
+  "description": "Order for electronics",
+  "customer": {
+    "id": 2,
+    "name": "John Doe"
+  }
+}

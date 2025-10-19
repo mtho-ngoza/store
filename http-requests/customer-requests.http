@@ -1,0 +1,73 @@
+### Customer API Requests
+
+### Base URL
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+###
+# Get all customers (default pagination: page=0, size=20)
+GET {{baseUrl}}/customer
+Accept: {{contentType}}
+
+###
+# Get all customers with custom pagination
+GET {{baseUrl}}/customer?page=0&size=10
+Accept: {{contentType}}
+
+###
+# Get all customers sorted by name ascending
+GET {{baseUrl}}/customer?page=0&size=20&sort=name,asc
+Accept: {{contentType}}
+
+###
+# Search customers by name - partial match "Joh"
+GET {{baseUrl}}/customer?name=Joh
+Accept: {{contentType}}
+
+###
+# Search customers by name - case insensitive
+GET {{baseUrl}}/customer?name=john
+Accept: {{contentType}}
+
+###
+# Search customers by name with pagination
+GET {{baseUrl}}/customer?name=Smith&page=0&size=5
+Accept: {{contentType}}
+
+###
+# Search customers by name with custom sort
+GET {{baseUrl}}/customer?name=a&page=0&size=10&sort=name,asc
+Accept: {{contentType}}
+
+###
+# Search with no results (empty page)
+GET {{baseUrl}}/customer?name=NONEXISTENT
+Accept: {{contentType}}
+
+###
+# Create a new customer
+POST {{baseUrl}}/customer
+Content-Type: {{contentType}}
+
+{
+  "name": "Alice Johnson"
+}
+
+###
+# Create another customer
+POST {{baseUrl}}/customer
+Content-Type: {{contentType}}
+
+{
+  "name": "Bob Smith"
+}
+
+###
+# Create customer with orders (if supported)
+POST {{baseUrl}}/customer
+Content-Type: {{contentType}}
+
+{
+  "name": "Charlie Brown",
+  "orders": []
+}
