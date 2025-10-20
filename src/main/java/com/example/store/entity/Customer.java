@@ -1,6 +1,7 @@
 package com.example.store.entity;
 
 import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,9 +54,7 @@ public class Customer {
         return getClass().hashCode();
     }
 
-    /**
-     * ToString excludes orders collection to prevent circular references and LazyInitializationException.
-     */
+    /** ToString excludes orders collection to prevent circular references and LazyInitializationException. */
     @Override
     public String toString() {
         return "Customer{" + "id=" + id + ", name='" + name + '\'' + '}';
